@@ -8,6 +8,7 @@ namespace ep_models.TestWrapper
 {
     public class ParamTestPair
     {
+        public string TestName { get; set; }
         public EPInputModel EPInputModel { get; set; }
         public PredictionModel PredictionModel { get; set; }
     }
