@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QRISK3-EH" Version="1.0.0">
+    <ProjectReference Include="..\qrisk3\Engine\QRISK3-EH.csproj">
       <Aliases>qrisk3</Aliases>
-    </PackageReference>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
