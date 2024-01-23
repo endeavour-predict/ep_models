@@ -3,7 +3,6 @@
 extern alias qrisk3;
 
 using Core;
-using Microsoft.VisualBasic;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using static Core.EPStandardDefinitions;
