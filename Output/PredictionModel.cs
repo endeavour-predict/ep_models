@@ -21,7 +21,7 @@ namespace ep_models
         /// <summary>
         /// Metadata about this call
         /// </summary>
-        public Meta Meta { get; set; } = new Meta();
+        public ServiceMeta ServiceMeta { get; set; } = new ServiceMeta();
 
         /// <summary>
         /// The data provided by the user for this Prediction.
@@ -89,9 +89,9 @@ public class DataQuality
 /// <summary>
 /// Contains MetaData about the prediction: timings, versions, etc
 /// </summary>
-public class Meta
+public class ServiceMeta
 {
-    public Meta()
+    public ServiceMeta()
     {
     }
     /// <summary>

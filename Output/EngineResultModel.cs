@@ -36,7 +36,7 @@ namespace ep_models
         /// <summary>
         /// Metadata about this call to the Engine
         /// </summary>
-        public Meta CalculationMeta { get; set; } = new Meta();
+        public EngineMeta CalculationMeta { get; set; } = new EngineMeta();
 
         /// <summary>
         /// The data provided by the user for this Prediction. Identifiable fields are stripped of data and marked as **PI** 
@@ -91,9 +91,9 @@ namespace ep_models
         /// <summary>
         /// Contains MetaData about the prediction: timings, versions, etc
         /// </summary>
-        public class Meta
+        public class EngineMeta
         {
-            public Meta()
+            public EngineMeta()
             {
             }
             
@@ -125,7 +125,7 @@ namespace ep_models
             Engine engine = GetEngine(globals, EPStandardDefinitions.Engines.QRisk3.ToString());            
             this.EngineVersion = engine.EngineVersion;
 
-            var meta = new Meta();
+            var meta = new EngineMeta();
             meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
             meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
             this.CalculationMeta = meta;
