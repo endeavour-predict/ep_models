@@ -73,7 +73,7 @@ namespace ep_models
         /// </summary>
         ///  <example>45</example>
         [Required]
-        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
+        //[Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
         public int age { get; set; }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace ep_models
         /// The most recent ratio of total serum cholesterol/HDL recorded in the last 5 years
         /// </summary>
         /// <example>4.1</example>
-        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
+        //[Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
         public double? cholesterolRatio { get; set; }
 
         /// <summary>
@@ -250,14 +250,14 @@ namespace ep_models
         /// Latest Systolic Blood Pressure mean reading (mmHg). If provided will be used instead of the List of systolicBloodPressures
         /// </summary>
         /// <example>140.4</example>
-        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
+        //[Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
         public Double? systolicBloodPressureMean { get; set; }
 
         /// <summary>
         /// Standard Deviation for the systolicBloodPressureMean value
         /// </summary>
         /// <example>3</example>
-        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
+        //[Range(0, double.MaxValue, ErrorMessage = "Please enter valid positive number.")]
         public Double? systolicBloodPressureStDev { get; set; }
 
         /// <summary>
