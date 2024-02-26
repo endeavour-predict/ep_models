@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <RepositoryUrl>https://github.com/endeavour-predict/ep_models</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QRisk3" Version="3.0.0">
+    <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
     </PackageReference>
   </ItemGroup>
