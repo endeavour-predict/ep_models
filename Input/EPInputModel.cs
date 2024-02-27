@@ -61,7 +61,7 @@ namespace ep_models
         /// </summary>        
         /// <example>["QRisk3", "QDiabetes"]</example>
         [Required]
-        public List<EPStandardDefinitions.Engines> requestedEngines { get; set; } 
+        public List<EPStandardDefinitions.Engines> requestedEngines { get; set; } = new List<Engines> { };
 
         /// <summary>
         /// Assigned sex at birth.
