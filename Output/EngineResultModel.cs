@@ -1,12 +1,15 @@
 ﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
 extern alias qrisk3;
-
+using System;
+using System.Collections.Generic;
 using Core;
 using System.Reflection;
-using System.Text.Json.Serialization;
+
 using static Core.EPStandardDefinitions;
 using static Globals;
+using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace ep_models
 {
@@ -368,7 +371,7 @@ namespace ep_models
 
         private static Engine GetEngine(Globals globals, string engineName)
         {
-            var engine = globals.AvailableEngines.Where(engine => engine.EngineName == engineName).SingleOrDefault();
+            var engine = globals.AvailableEngines.Where(p => p.EngineName == engineName).SingleOrDefault();
             if (engine == null) throw new ApplicationException("No engine was found with the name: " + engineName);
             return engine;
         }
