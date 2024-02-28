@@ -1,0 +1,14 @@
+﻿-- NUGET package version history
+
+1.0.0
+Jan 2024
+Initial Release to NUGET
+
+1.0.1
+Version bump from dependancy
+
+1.0.2
+Downgrade framework to NetStandard20
+
+1.0.3
+Fix empty lists

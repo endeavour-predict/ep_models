@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using static Core.EPStandardDefinitions;
 
 namespace ep_models
@@ -150,7 +152,7 @@ namespace ep_models
         /// The order here is important, the readings in the list should be most recent first, ending with the oldest reading
         /// </summary>
         /// <example>[120,130,140]</example>
-        public List<Double>? systolicBloodPressures { get; set; }
+        //public List<Double> systolicBloodPressures { get; set; }
 
 
         /// <summary>
