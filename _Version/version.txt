@@ -1,0 +1,7 @@
+﻿--------------------------------------------------------------
+1.0.4
+20 Mar 2025
+Removal of the JSON-LD ID decorations in the models
+--------------------------------------------------------------
+Packaged at 1.0.3 for initial release
+History before 1.0.3 not recorded here
