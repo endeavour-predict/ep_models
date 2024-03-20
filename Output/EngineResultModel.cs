@@ -66,8 +66,7 @@ namespace ep_models
             }
             /// <summary>
             /// The identifier for this score.
-            /// </summary>
-            [JsonPropertyName("@id")]            
+            /// </summary>            
             public Uri id { get; set; }
             /// <summary>
             /// The score calculated by the Engine.
