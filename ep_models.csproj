@@ -12,8 +12,8 @@
     <PackageProjectUrl>https://github.com/endeavour-predict/ep_models</PackageProjectUrl>
   </PropertyGroup>
 
-  <ItemGroup>    
-    <PackageReference Include="QRisk3" Version="3.0.0">
+  <ItemGroup>
+    <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
     </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
