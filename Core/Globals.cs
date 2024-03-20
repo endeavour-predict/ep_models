@@ -6,6 +6,7 @@ extern alias qrisk3;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 
 using Core;
+using System.Collections.Generic;
 
 /// <summary>
 /// Class to hold some Constants
