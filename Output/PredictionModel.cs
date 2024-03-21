@@ -1,9 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using ep_models;
-using System.Text.Json.Serialization;
 
 namespace ep_models
 {
+    /// <summary>
+    /// The output model for a single Prediction (which may contain many scores, from many Calculation Engines)
+    /// </summary>
     public class PredictionModel
     {
 
@@ -13,9 +16,11 @@ namespace ep_models
         public List<EngineResultModel> EngineResults { get; set; } = new List<EngineResultModel>();
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PredictionModel"/> class.
+        /// </summary>
         public PredictionModel()
-        {
-            
+        {            
         }
 
         /// <summary>
@@ -30,18 +35,23 @@ namespace ep_models
 
     }
 
+    /// <summary>
+    /// Whether the parameter was OK, Missing or Out of Range
+    /// </summary>
     public enum ParameterQuality
     {
-           OK, MISSING, OUT_OF_RANGE
+        OK, MISSING, OUT_OF_RANGE
     }
 
 
 }
 
 
+/// <summary>
+/// Contains details of the "Quality" of the Input Parameters used, and details of any substitutions.
+/// </summary>
 public class DataQuality
 {
-
     /// <summary>
     /// Name of the Parameter used by the Calculator
     /// </summary>
@@ -65,24 +75,6 @@ public class DataQuality
     }
 
 }
-
-///// <summary>
-///// Contains the ID, Score and Typical score (if available)
-///// </summary>
-//public class PredictionResult
-//{
-
-//    public PredictionResult()
-//    {        
-//    }
-
-//    [JsonPropertyName("@id")]
-//    public Uri id { get; set; } 
-//    public double score { get; set; }
-//    public double? typicalScore { get; set; }
-//    public int predictionYears { get; set; }
-
-//}
 
 
 

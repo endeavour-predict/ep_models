@@ -1,12 +1,15 @@
 ﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
 extern alias qrisk3;
-
+using System;
+using System.Collections.Generic;
 using Core;
 using System.Reflection;
-using System.Text.Json.Serialization;
+
 using static Core.EPStandardDefinitions;
 using static Globals;
+using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace ep_models
 {
@@ -18,13 +21,19 @@ namespace ep_models
     public class EngineResultModel
     {
 
+        /// <summary>
+        /// Name of the Engine that supplied this result
+        /// </summary>
         public EPStandardDefinitions.Engines EngineName { get; set; }
 
-
+        /// <summary>
+        /// Version of the Engine that supplied this result
+        /// </summary>
         public string EngineVersion { get; set; }
 
         /// <summary>
         /// List of Prediction Scores
+        /// Some calculator engines will provide multiple scores (Patient Score, Typical Score, QHeart age etc)
         /// </summary>
         public List<PredictionResult> Results { get; set; } = new List<PredictionResult>();
 
@@ -49,42 +58,54 @@ namespace ep_models
         /// </summary>
         public class PredictionResult
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PredictionResult"/> class.
+            /// </summary>
             public PredictionResult()
             {
             }
-            [JsonPropertyName("@id")]
+            /// <summary>
+            /// The identifier for this score.
+            /// </summary>            
             public Uri id { get; set; }
+            /// <summary>
+            /// The score calculated by the Engine.
+            /// </summary>            
             public double score { get; set; }
+            /// <summary>
+            /// A typical score for someone of the same age/sex (if the calculator supports this)
+            /// </summary>            
             public double? typicalScore { get; set; }
+            /// <summary>
+            /// How many years the Risk score is calculated for.
+            /// </summary>            
             public int predictionYears { get; set; }
         }
 
 
+        /// <summary>
+        /// Class containing details about supplied parameter "quality", including details of any substritutions or corrections made before the Score was calculated.
+        /// </summary>
         public class DataQuality
         {
-
             /// <summary>
-            /// Name of the Parameter used by the Calculator
+            /// Name of the Parameter used by the Calculator.
             /// </summary>
             public string Parameter { get; set; } = "";
-
             /// <summary>
             /// Was the parameter provided OK, out of range etc?
             /// </summary>
             public ParameterQuality Quality { get; set; }
-
             /// <summary>
-            /// The value used by the calculator if the value provided was substituted
+            /// The value used by the calculator if the value provided was substituted.
             /// </summary>
             public string SubstituteValue { get; set; } = "";
-
             /// <summary>
             /// Quality report from the calculator, showing any substituted values for missing or out of range parameters
             /// </summary>
             public DataQuality()
             {
             }
-
         }
 
 
@@ -93,10 +114,12 @@ namespace ep_models
         /// </summary>
         public class EngineMeta
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="EngineMeta"/> class.
+            /// </summary>
             public EngineMeta()
             {
-            }
-            
+            }            
             /// <summary>
             /// Status result from the Calculator.
             /// </summary>
@@ -112,12 +135,16 @@ namespace ep_models
 
 
 
-        // Constructors, one for each supported engine
 
+        /// <summary>
+        /// Empty Constructor
+        /// </summary>
         public EngineResultModel()
         {            
         }
-
+        /// <summary>
+        /// Constructor for the QRisk3 engine
+        /// </summary>        
         public EngineResultModel(qrisk3::QRISK3Engine.QRiskCVDResults calcResult, QRisk3InputModel calcInputModel)
         {            
             var globals = new Globals();
@@ -343,7 +370,7 @@ namespace ep_models
 
         private static Engine GetEngine(Globals globals, string engineName)
         {
-            var engine = globals.AvailableEngines.Where(engine => engine.EngineName == engineName).SingleOrDefault();
+            var engine = globals.AvailableEngines.Where(p => p.EngineName == engineName).SingleOrDefault();
             if (engine == null) throw new ApplicationException("No engine was found with the name: " + engineName);
             return engine;
         }
