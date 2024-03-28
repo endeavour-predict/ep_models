@@ -19,7 +19,11 @@ namespace Core
             /// <summary>
             /// QRisk3 Engine
             /// </summary>
-            QRisk3
+            QRisk3,
+            /// <summary>
+            /// Oesophageal cancer (CanPredict) known as X05
+            /// </summary>
+            X05
         };
 
         /// <summary>
@@ -189,7 +193,18 @@ namespace Core
         };
 
 
-        ///Commented for now, possibly used in future calculators
+        public enum PPICat
+        {
+            Never,
+            OneToFiveScripts,
+            SixToElevenScripts,
+            TwelveToTwentyThreeScripts,
+            TwentyFourToFortySevenScripts,
+            FortyEightOrMoreScripts,
+            NotKnown
+        };
+
+        ////Commented for now, possibly used in future calculators
         //public enum AdmitPriorCat { None, One, Two, ThreeOrMore };
         //public enum Sha1Cat { EastMidlands, EastOfEngland, London, NorthEast, NorthWest, SouthCentral, SouthEast, SouthWest, WestMidlands, YorksAndHumber, Wales, IsleOfMan, Other };
         //public enum HeartburnIndigestionCat { Neither, Heartburn, Indigestion };

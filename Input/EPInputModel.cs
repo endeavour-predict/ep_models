@@ -367,6 +367,18 @@ namespace ep_models
         /// <example>false</example>
         public bool familyHistoryOsteoporosis { get; set; }
 
+
+        // 8 new params for X05 added 28 Mar 2024 - Descriptions pending
+        public bool barrettsOesophagus { get; set; }
+        public bool bloodCancer { get; set; }
+        public bool breastCancer { get; set; }
+        public bool hiatusHernia { get; set; }
+        public bool hPyloriInfection { get; set; }
+        public bool lungCancer { get; set; }
+        public bool anaemia { get; set; }
+        public Core.EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
+
+
         /// <summary>
         /// Townsend score. 
         /// The Townsend score associated with the output area of a patient’s postcode.
