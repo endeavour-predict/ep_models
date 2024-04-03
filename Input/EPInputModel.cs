@@ -368,14 +368,44 @@ namespace ep_models
         public bool familyHistoryOsteoporosis { get; set; }
 
 
-        // 8 new params for X05 added 28 Mar 2024 - Descriptions pending
+        /// <summary>
+        /// Barrett’s Oesophagus
+        /// </summary>
         public bool barrettsOesophagus { get; set; }
+
+        /// <summary>
+        /// Cancer of the blood or bone marrow such as leukaemia, myelodysplastic syndromes, lymphoma or myeloma and are at any stage of treatment
+        /// </summary>
         public bool bloodCancer { get; set; }
+
+        /// <summary>
+        /// Breast cancer and are at any stage of treatment
+        /// </summary>
         public bool breastCancer { get; set; }
+
+        /// <summary>
+        /// Hiatus Hernia
+        /// </summary>
         public bool hiatusHernia { get; set; }
+
+        /// <summary>
+        /// Helicobacter Pylori Infection
+        /// </summary>
         public bool hPyloriInfection { get; set; }
+
+        /// <summary>
+        /// lung cancer and are at any stage of treatment
+        /// </summary>
         public bool lungCancer { get; set; }
+
+        /// <summary>
+        /// Anaemia (haemoglobin < 110 g/L)
+        /// </summary>
         public bool anaemia { get; set; }
+
+        /// <summary>
+        /// Currently taking antiacids (proton pump inhibitors)
+        /// </summary>
         public Core.EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
 
 

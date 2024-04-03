@@ -4,6 +4,7 @@ extern alias qrisk3;
 //extern alias qdiab;
 //extern alias qfrac;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
+extern alias X05;
 
 using Core;
 using System.Collections.Generic;
@@ -56,6 +57,13 @@ public class Globals
         //    EngineVersion = qfrac::QFractureEngine.QFractureAlgorithmCalculator.version(),
         //    EngineUri = "http://endhealth.info/im#QFracture"
         //});
+
+        this.AvailableEngines.Add(new Engine
+        {
+            EngineName = EPStandardDefinitions.Engines.X05.ToString(),
+            EngineVersion = X05::X05_oesophagealcancerEngine.X05_oesophagealcancerAlgorithmCalculator.version(),
+            EngineUri = "http://endhealth.info/im#X05"
+        });
     }
 
 

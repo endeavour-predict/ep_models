@@ -69,6 +69,14 @@ namespace ep_models
         /// <example>10</example>
         public int predictionYears { get; set; }
 
+        /// <summary>
+        /// Townsend score. 
+        /// The Townsend score associated with the output area of a patient’s postcode.
+        /// See: https://statistics.ukdataservice.ac.uk/dataset/2011-uk-townsend-deprivation-scores#:~:text=The%20Townsend%20Deprivation%20Index%20is,is%20available%20for%20that%20area).
+        /// </summary>
+        /// <example>0</example>        
+        public double? townsendScore { get; set; }
+
 
         public bool barrettsOesophagus { get; set; }
         public bool bloodCancer { get; set; }
