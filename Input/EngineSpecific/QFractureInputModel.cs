@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ep_core;
 using System.ComponentModel.DataAnnotations;
 
 namespace ep_models
@@ -27,7 +24,7 @@ namespace ep_models
         /// </summary>        
         /// <example>Female</example>
         [Required]
-        public Core.EPStandardDefinitions.Gender sex { get; set; }
+        public EPStandardDefinitions.Gender sex { get; set; }
 
         /// <summary>
         /// Patients age in years calculated on the search date.
@@ -54,7 +51,7 @@ namespace ep_models
         /// Diabetes status
         /// </summary>
         /// <example>None</example>        
-        public Core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
+        public EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
 
         /// <summary>
         /// Body Mass Index (kg/m^2).
@@ -68,19 +65,19 @@ namespace ep_models
         /// Ethnic group, chosen from the 17 categories.
         /// </summary>
         /// <example>OtherWhiteBackground</example>
-        public Core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
+        public EPStandardDefinitions.Ethnicity ethnicity { get; set; }
 
         /// <summary>
         /// Most recent confirmed smoking status.
         /// </summary>
         /// <example>NonSmoker</example>
-        public Core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
+        public EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
 
         /// <summary>
         /// Most recent confirmed alcohol status.
         /// </summary>
         /// <example>One_to_two_units_per_day</example>
-        public Core.EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
+        public EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
 
         /// <summary>
         /// Taking Antidepressants?

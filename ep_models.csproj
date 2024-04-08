@@ -14,14 +14,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QRisk3" Version="3.0.1">
-      <Aliases>qrisk3</Aliases>
-    </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.2" />
-    <PackageReference Include="X05" Version="1.0.0">
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ep_core\ep_core\ep_core.csproj" />
+    <ProjectReference Include="..\oesophagealcancer-dotnet\Engine\X05_oesophagealcancerEngine.csproj">
       <Aliases>X05</Aliases>
-    </PackageReference>
+    </ProjectReference>
+    <ProjectReference Include="..\qrisk3\Engine\QRISK3-EH.csproj">
+      <Aliases>qrisk3</Aliases>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

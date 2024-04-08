@@ -1,26 +1,27 @@
 ﻿extern alias X05;
 
-using System;
-using System.Collections.Generic;
+using ep_core;
 using System.ComponentModel.DataAnnotations;
-using X05::CRStandardDefinitions;
-using static Core.EPStandardDefinitions;
+
 
 namespace ep_models
 {
-
+    /// <remarks>
+    /// Strict SNOMED definitions for all the below parameters are maintained by Endeavour Predict
+    /// Using the definitions will ensure the highest possible data quality and consistency being fed to the API
+    /// Please consult our website for further details on the definitions, which are also available in 
+    /// alternative terminologies.
+    /// In Attended Mode, clinicians may use their clinical judgement to over-ride automated searches, 
+    /// however this may change the outcome of the risk estimation, and the user assumes all risk for this.    
+    /// </remarks>    
     public class X05InputModel
     {
-
-
-
-
         /// <summary>
         /// Assigned sex at birth.
         /// </summary>        
         /// <example>Female</example>
         [Required]
-        public Core.EPStandardDefinitions.Gender sex { get; set; }
+        public EPStandardDefinitions.Gender sex { get; set; }
 
         /// <summary>
         /// Patients age in years calculated on the search date.
@@ -34,7 +35,7 @@ namespace ep_models
         /// Diabetes status
         /// </summary>
         /// <example>None</example>
-        public Core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
+        public EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
 
         /// <summary>
         /// Body Mass Index (kg/m^2).
@@ -49,19 +50,19 @@ namespace ep_models
         /// Ethnic group, chosen from the 17 categories used by QRisk3.
         /// </summary>
         /// <example>OtherWhiteBackground</example>
-        public Core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
+        public EPStandardDefinitions.Ethnicity ethnicity { get; set; }
         
         /// <summary>
         /// Most recent confirmed smoking status.
         /// </summary>
         /// <example>NonSmoker</example>
-        public Core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
+        public EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
 
         /// <summary>
         /// Most recent confirmed alcohol status.
         /// </summary>
         /// <example>One_to_two_units_per_day</example>
-        public Core.EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
+        public EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
 
         /// <summary>
         /// Number of years to calculate risk over, not all Engines support this and will use a default.
@@ -78,15 +79,47 @@ namespace ep_models
         public double? townsendScore { get; set; }
 
 
+        /// <summary>
+        /// Barrett’s Oesophagus
+        /// </summary>
         public bool barrettsOesophagus { get; set; }
+
+        /// <summary>
+        /// Cancer of the blood or bone marrow such as leukaemia, myelodysplastic syndromes, lymphoma or myeloma and are at any stage of treatment
+        /// </summary>
         public bool bloodCancer { get; set; }
+
+        /// <summary>
+        /// Breast cancer and are at any stage of treatment
+        /// </summary>
         public bool breastCancer { get; set; }
+
+        /// <summary>
+        /// Hiatus Hernia
+        /// </summary>
         public bool hiatusHernia { get; set; }
+
+        /// <summary>
+        /// Helicobacter Pylori Infection
+        /// </summary>
         public bool hPyloriInfection { get; set; }
+
+        /// <summary>
+        /// lung cancer and are at any stage of treatment
+        /// </summary>
         public bool lungCancer { get; set; }
+
+        /// <summary>
+        /// Anaemia (haemoglobin less than 110 g/L)
+        /// </summary>
         public bool anaemia { get; set; }
-        public Core.EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
-        
+
+        /// <summary>
+        /// Currently taking antiacids (proton pump inhibitors)
+        /// </summary>
+        public EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
+
+
 
     }
 }

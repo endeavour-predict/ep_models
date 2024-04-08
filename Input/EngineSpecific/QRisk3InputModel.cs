@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using static Core.EPStandardDefinitions;
+using static ep_core.EPStandardDefinitions;
 
 namespace ep_models
 {
@@ -33,7 +33,7 @@ namespace ep_models
         /// </summary>        
         /// <example>Female</example>
         [Required]
-        public Core.EPStandardDefinitions.Gender sex { get; set; }
+        public ep_core.EPStandardDefinitions.Gender sex { get; set; }
 
         /// <summary>
         /// Patients age in years calculated on the search date.
@@ -113,7 +113,7 @@ namespace ep_models
         /// Diabetes status
         /// </summary>
         /// <example>None</example>
-        public Core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
+        public ep_core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
 
         /// <summary>
         /// Body Mass Index (kg/m^2).
@@ -128,7 +128,7 @@ namespace ep_models
         /// Ethnic group, chosen from the 17 categories used by QRisk3.
         /// </summary>
         /// <example>OtherWhiteBackground</example>
-        public Core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
+        public ep_core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
 
         /// <summary>
         /// Family history of coronary heart disease in a first degree relative under the age of 60 years recorded before the search date?
@@ -173,7 +173,7 @@ namespace ep_models
         /// Most recent confirmed smoking status.
         /// </summary>
         /// <example>NonSmoker</example>
-        public Core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
+        public ep_core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
 
         /// <summary>
         /// Townsend score. 

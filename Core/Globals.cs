@@ -6,7 +6,8 @@ extern alias qrisk3;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 extern alias X05;
 
-using Core;
+
+using ep_core;
 using System.Collections.Generic;
 
 /// <summary>

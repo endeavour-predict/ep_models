@@ -2,15 +2,13 @@
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
 extern alias qrisk3;
 extern alias X05;
+
 using System;
 using System.Collections.Generic;
-using Core;
 using System.Reflection;
-
-using static Core.EPStandardDefinitions;
 using static Globals;
-using System.Text.Json.Serialization;
 using System.Linq;
+using static ep_core.EPStandardDefinitions;
 
 namespace ep_models
 {
@@ -25,7 +23,7 @@ namespace ep_models
         /// <summary>
         /// Name of the Engine that supplied this result
         /// </summary>
-        public EPStandardDefinitions.Engines EngineName { get; set; }
+        public Engines EngineName { get; set; }
 
         /// <summary>
         /// Version of the Engine that supplied this result
@@ -150,12 +148,12 @@ namespace ep_models
         {            
             var globals = new Globals();
             this.EngineName = Engines.QRisk3;
-            Engine engine = GetEngine(globals, EPStandardDefinitions.Engines.QRisk3.ToString());            
+            Engine engine = GetEngine(globals, Engines.QRisk3.ToString());            
             this.EngineVersion = engine.EngineVersion;
 
             var meta = new EngineMeta();
-            meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-            meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
             this.CalculationMeta = meta;
 
             // map the calculator specific results output to the generic API engine results model
@@ -375,12 +373,12 @@ namespace ep_models
         {
             var globals = new Globals();
             this.EngineName = Engines.X05;
-            Engine engine = GetEngine(globals, EPStandardDefinitions.Engines.X05.ToString());
+            Engine engine = GetEngine(globals, Engines.X05.ToString());
             this.EngineVersion = engine.EngineVersion;
 
             var meta = new EngineMeta();
-            meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-            meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
             this.CalculationMeta = meta;
 
             // map the calculator specific results output to the generic API engine results model

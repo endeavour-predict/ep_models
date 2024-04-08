@@ -1,8 +1,9 @@
-﻿using Core;
+﻿
+using ep_core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using static Core.EPStandardDefinitions;
+using static ep_core.EPStandardDefinitions;
 
 namespace ep_models
 {
@@ -27,7 +28,7 @@ namespace ep_models
         public static EPInputModel CreateFromQRisk3TestPackRow(string[] row)
         {       
             var epInputModel = new EPInputModel();
-            epInputModel.requestedEngines.Add(EPStandardDefinitions.Engines.QRisk3);
+            epInputModel.requestedEngines.Add(Engines.QRisk3);
             epInputModel.CVD = row[1] == "1";
             if (row[2] == "0") epInputModel.sex = Gender.Female;
             if (row[2] == "1") epInputModel.sex = Gender.Male;
@@ -61,14 +62,14 @@ namespace ep_models
         /// </summary>        
         /// <example>["QRisk3", "QDiabetes"]</example>
         [Required]
-        public List<EPStandardDefinitions.Engines> requestedEngines { get; set; } = new List<Engines> { };
+        public List<ep_core.EPStandardDefinitions.Engines> requestedEngines { get; set; } = new List<ep_core.EPStandardDefinitions.Engines> { };
 
         /// <summary>
         /// Assigned sex at birth.
         /// </summary>        
         /// <example>Female</example>
         [Required]
-        public Core.EPStandardDefinitions.Gender sex { get; set; }
+        public ep_core.EPStandardDefinitions.Gender sex { get; set; }
 
         /// <summary>
         /// Patients age in years calculated on the search date.
@@ -216,7 +217,7 @@ namespace ep_models
         /// Diabetes status
         /// </summary>
         /// <example>None</example>        
-        public Core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
+        public ep_core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
 
         /// <summary>
         /// Body Mass Index (kg/m^2).
@@ -230,13 +231,13 @@ namespace ep_models
         /// Ethnic group, chosen from the 17 categories.
         /// </summary>
         /// <example>OtherWhiteBackground</example>
-        public Core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
+        public ep_core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
 
         /// <summary>
         /// Most recent confirmed smoking status.
         /// </summary>
         /// <example>NonSmoker</example>
-        public Core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
+        public ep_core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
 
         /// <summary>
         /// Systolic blood pressure readings (mmHg).
@@ -266,7 +267,7 @@ namespace ep_models
         /// Most recent confirmed alcohol status.
         /// </summary>
         /// <example>One_to_two_units_per_day</example>
-        public Core.EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
+        public ep_core.EPStandardDefinitions.AlcoholCat6 alcoholStatus { get; set; }
 
 
         /// <summary>
@@ -406,7 +407,7 @@ namespace ep_models
         /// <summary>
         /// Currently taking antiacids (proton pump inhibitors)
         /// </summary>
-        public Core.EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
+        public EPStandardDefinitions.PPICat protonPumpInhibitorStatus { get; set; }
 
 
         /// <summary>

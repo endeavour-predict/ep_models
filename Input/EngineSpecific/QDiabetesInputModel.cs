@@ -21,7 +21,7 @@ namespace ep_models
         /// </summary>        
         /// <example>Female</example>
         [Required]
-        public Core.EPStandardDefinitions.Gender sex { get; set; }
+        public ep_core.EPStandardDefinitions.Gender sex { get; set; }
 
         /// <summary>
         /// Patients age in years calculated on the search date.
@@ -107,7 +107,7 @@ namespace ep_models
         /// Diabetes status
         /// </summary>
         /// <example>None</example>        
-        public Core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
+        public ep_core.EPStandardDefinitions.DiabetesCat diabetesStatus { get; set; }
 
         /// <summary>
         /// Body Mass Index (kg/m^2).
@@ -121,13 +121,13 @@ namespace ep_models
         /// Ethnic group, chosen from the 17 categories.
         /// </summary>
         /// <example>OtherWhiteBackground</example>
-        public Core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
+        public ep_core.EPStandardDefinitions.Ethnicity ethnicity { get; set; }
 
         /// <summary>
         /// Most recent confirmed smoking status.
         /// </summary>
         /// <example>NonSmoker</example>
-        public Core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
+        public ep_core.EPStandardDefinitions.SmokeCat smokingStatus { get; set; }
 
         /// <summary>
         /// Townsend score. 
