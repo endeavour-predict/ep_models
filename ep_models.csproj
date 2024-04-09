@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <Description>1.0.5 - Addition of X05 params
 1.0.4 - Removal of the JSON-LD ID decorations in the models
 1.0.3 - Initial build</Description>
@@ -14,18 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ep_core" Version="1.0.0" />
+    <PackageReference Include="QRisk3" Version="3.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ep_core\ep_core\ep_core.csproj" />
-    <ProjectReference Include="..\oesophagealcancer-dotnet\Engine\X05_oesophagealcancerEngine.csproj">
-      <Aliases></Aliases>
-    </ProjectReference>
-    <ProjectReference Include="..\qrisk3\Engine\QRISK3-EH.csproj">
-      <Aliases></Aliases>
-    </ProjectReference>
+    <PackageReference Include="X05" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

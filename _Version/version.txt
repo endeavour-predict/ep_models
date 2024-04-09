@@ -2,11 +2,16 @@
 --------------------------------------------------------------
 ep_models - NUGET package version history
 --------------------------------------------------------------
-1.0.5 (feature_x05) TBC
+1.0.6 (feature_x05) 
+09 Apr 2024
+Built against ep_core package
+--------------------------------------------------------------
+1.0.5 (feature_x05) 
+09 Apr 2024
 Moved Core classes to new repo for sharing across calcs
 --------------------------------------------------------------
 1.0.4
-20 Mar 2025
+20 Mar 2024
 Removal of the JSON-LD ID decorations in the models
 --------------------------------------------------------------
 1.0.3
@@ -16,7 +21,7 @@ Fix empty lists
 Downgrade framework to NetStandard20
 --------------------------------------------------------------
 1.0.1
-Version bump from dependancy
+Version bump from dependency
 --------------------------------------------------------------
 1.0.0
 Jan 2024
