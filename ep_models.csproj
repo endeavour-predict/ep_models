@@ -21,10 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ep_core\ep_core\ep_core.csproj" />
     <ProjectReference Include="..\oesophagealcancer-dotnet\Engine\X05_oesophagealcancerEngine.csproj">
-      <Aliases>X05</Aliases>
+      <Aliases></Aliases>
     </ProjectReference>
     <ProjectReference Include="..\qrisk3\Engine\QRISK3-EH.csproj">
-      <Aliases>qrisk3</Aliases>
+      <Aliases></Aliases>
     </ProjectReference>
   </ItemGroup>
 

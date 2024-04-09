@@ -1,9 +1,4 @@
-﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
-// see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
-extern alias qrisk3;
-extern alias X05;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using static Globals;
@@ -144,7 +139,7 @@ namespace ep_models
         /// <summary>
         /// Constructor for the QRisk3 engine
         /// </summary>        
-        public EngineResultModel(qrisk3::QRISK3Engine.QRiskCVDResults calcResult, QRisk3InputModel calcInputModel)
+        public EngineResultModel(QRISK3Engine.QRiskCVDResults calcResult, QRisk3InputModel calcInputModel)
         {            
             var globals = new Globals();
             this.EngineName = Engines.QRisk3;
@@ -369,7 +364,7 @@ namespace ep_models
         /// <summary>
         /// Constructor for the QRisk3 engine
         /// </summary>        
-        public EngineResultModel(X05::X05_oesophagealcancerEngine.X05_oesophagealcancerResults calcResult, X05InputModel calcInputModel)
+        public EngineResultModel(X05_oesophagealcancerEngine.X05_oesophagealcancerResults calcResult, X05InputModel calcInputModel)
         {
             var globals = new Globals();
             this.EngineName = Engines.X05;

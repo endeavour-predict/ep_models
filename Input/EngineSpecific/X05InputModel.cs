@@ -1,6 +1,4 @@
-﻿extern alias X05;
-
-using ep_core;
+﻿using ep_core;
 using System.ComponentModel.DataAnnotations;
 
 
