@@ -4,6 +4,7 @@ using System.Reflection;
 using static Globals;
 using System.Linq;
 using static ep_core.EPStandardDefinitions;
+using ep_core;
 
 namespace ep_models
 {
@@ -234,15 +235,17 @@ namespace ep_models
         public EngineResultModel(QDiabetesEngine.QDiabetesResults calcResult, QDiabetesInputModel calcInputModel)
         {
             var globals = new Globals();
-            var engineName = EPStandardDefinitions.Engines.QDiabetes.ToString();
-            Engine engine = GetEngine(globals, engineName);
-            this.EngineName = engine.EngineName;
+            this.EngineName = Engines.QDiabetes;
+            Engine engine = GetEngine(globals, Engines.QDiabetes.ToString());
             this.EngineVersion = engine.EngineVersion;
 
-            var meta = new Meta();
-            meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-            meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
+
+
+            var meta = new EngineMeta();
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
             this.CalculationMeta = meta;
+
 
             var result1 = new PredictionResult();
             result1.id = new Uri(engine.EngineUri);
@@ -277,20 +280,22 @@ namespace ep_models
             Quality.Add(townsendQuality);
 
             // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
+
+            // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
             PropertyInfo[] calcInputProperties = typeof(QDiabetesInputModel).GetProperties();
-            PropertyInfo[] apiInputProperties = typeof(InputModel).GetProperties();
-            InputModel apiInputModel = new InputModel();
+            PropertyInfo[] apiInputProperties = typeof(EPInputModel).GetProperties();
+            EPInputModel epInputModel = new EPInputModel();
             foreach (PropertyInfo calcProperty in calcInputProperties)
             {
                 // map the calc param to the genmeric input param, showing the ones used
-                var apiInputProperty = apiInputProperties.Where(p => p.PropertyType.Name == calcProperty.Name).SingleOrDefault();
+                var apiInputProperty = apiInputProperties.Where(p => p.Name == calcProperty.Name).SingleOrDefault();
                 if (apiInputProperty != null)
                 {
-                    calcProperty.SetValue(calcInputModel, apiInputProperty.GetValue(apiInputModel));
+                    apiInputProperty.SetValue(epInputModel, calcProperty.GetValue(calcInputModel));
                 }
             }
-            this.InputModel = apiInputModel;
-
+            epInputModel.requestedEngines.Add(Engines.QDiabetes);
+            this.EngineInputModel = epInputModel;
         }
 
 
@@ -362,7 +367,7 @@ namespace ep_models
 
 
         /// <summary>
-        /// Constructor for the QRisk3 engine
+        /// Constructor for the X05 engine
         /// </summary>        
         public EngineResultModel(X05_oesophagealcancerEngine.X05_oesophagealcancerResults calcResult, X05InputModel calcInputModel)
         {
