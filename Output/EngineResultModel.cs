@@ -231,67 +231,67 @@ namespace ep_models
         }
 
 
-        //public EngineResultModel(qdiab::QDiabetesEngine.QDiabetesResults calcResult, QDiabetesInputModel calcInputModel)
-        //{
-        //    var globals = new Globals();
-        //    var engineName = EPStandardDefinitions.Engines.QDiabetes.ToString();
-        //    Engine engine = GetEngine(globals, engineName);            
-        //    this.EngineName = engine.EngineName;
-        //    this.EngineVersion = engine.EngineVersion;
+        public EngineResultModel(QDiabetesEngine.QDiabetesResults calcResult, QDiabetesInputModel calcInputModel)
+        {
+            var globals = new Globals();
+            var engineName = EPStandardDefinitions.Engines.QDiabetes.ToString();
+            Engine engine = GetEngine(globals, engineName);
+            this.EngineName = engine.EngineName;
+            this.EngineVersion = engine.EngineVersion;
 
-        //    var meta = new Meta();
-        //    meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-        //    meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
-        //    this.CalculationMeta = meta;
+            var meta = new Meta();
+            meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
+            this.CalculationMeta = meta;
 
-        //    var result1 = new PredictionResult();
-        //    result1.id = new Uri(engine.EngineUri);
-        //    result1.score = calcResult.patient_score;
-        //    result1.typicalScore = calcResult.reference_score;
-        //    result1.predictionYears = 10;
-        //    this.Results.Add(result1);
+            var result1 = new PredictionResult();
+            result1.id = new Uri(engine.EngineUri);
+            result1.score = calcResult.patient_score;
+            result1.typicalScore = calcResult.reference_score;
+            result1.predictionYears = 10;
+            this.Results.Add(result1);
 
-        //    var smokingQuality = new DataQuality();
-        //    smokingQuality.Parameter = "smokingStatus";
-        //    smokingQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.smokingStatus.data.ToString());
-        //    smokingQuality.SubstituteValue = calcResult.dataQuality.smokingStatus.substitute_value;
-        //    Quality.Add(smokingQuality);
+            var smokingQuality = new DataQuality();
+            smokingQuality.Parameter = "smokingStatus";
+            smokingQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.smokingStatus.data.ToString());
+            smokingQuality.SubstituteValue = calcResult.dataQuality.smokingStatus.substitute_value;
+            Quality.Add(smokingQuality);
 
-        //    var ethnicityQuality = new DataQuality();
-        //    ethnicityQuality.Parameter = "ethnicity";
-        //    ethnicityQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.ethnicity.data.ToString());
-        //    ethnicityQuality.SubstituteValue = calcResult.dataQuality.ethnicity.substitute_value.ToString();
-        //    Quality.Add(ethnicityQuality);
+            var ethnicityQuality = new DataQuality();
+            ethnicityQuality.Parameter = "ethnicity";
+            ethnicityQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.ethnicity.data.ToString());
+            ethnicityQuality.SubstituteValue = calcResult.dataQuality.ethnicity.substitute_value.ToString();
+            Quality.Add(ethnicityQuality);
 
 
-        //    var bmiQuality = new DataQuality();
-        //    bmiQuality.Parameter = "BMI";
-        //    bmiQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.bmi.data.ToString());
-        //    bmiQuality.SubstituteValue = calcResult.dataQuality.bmi.substitute_value.ToString();
-        //    Quality.Add(bmiQuality);
+            var bmiQuality = new DataQuality();
+            bmiQuality.Parameter = "BMI";
+            bmiQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.bmi.data.ToString());
+            bmiQuality.SubstituteValue = calcResult.dataQuality.bmi.substitute_value.ToString();
+            Quality.Add(bmiQuality);
 
-        //    var townsendQuality = new DataQuality();
-        //    townsendQuality.Parameter = "townsendScore";
-        //    townsendQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.town.data.ToString());
-        //    townsendQuality.SubstituteValue = calcResult.dataQuality.town.substitute_value.ToString();
-        //    Quality.Add(townsendQuality);
+            var townsendQuality = new DataQuality();
+            townsendQuality.Parameter = "townsendScore";
+            townsendQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.town.data.ToString());
+            townsendQuality.SubstituteValue = calcResult.dataQuality.town.substitute_value.ToString();
+            Quality.Add(townsendQuality);
 
-        //    // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
-        //    PropertyInfo[] calcInputProperties = typeof(QDiabetesInputModel).GetProperties();
-        //    PropertyInfo[] apiInputProperties = typeof(InputModel).GetProperties();
-        //    InputModel apiInputModel = new InputModel();
-        //    foreach (PropertyInfo calcProperty in calcInputProperties)
-        //    {
-        //        // map the calc param to the genmeric input param, showing the ones used
-        //        var apiInputProperty = apiInputProperties.Where(p => p.PropertyType.Name == calcProperty.Name).SingleOrDefault();
-        //        if (apiInputProperty != null)
-        //        {
-        //            calcProperty.SetValue(calcInputModel, apiInputProperty.GetValue(apiInputModel));
-        //        }
-        //    }
-        //    this.InputModel = apiInputModel;
+            // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
+            PropertyInfo[] calcInputProperties = typeof(QDiabetesInputModel).GetProperties();
+            PropertyInfo[] apiInputProperties = typeof(InputModel).GetProperties();
+            InputModel apiInputModel = new InputModel();
+            foreach (PropertyInfo calcProperty in calcInputProperties)
+            {
+                // map the calc param to the genmeric input param, showing the ones used
+                var apiInputProperty = apiInputProperties.Where(p => p.PropertyType.Name == calcProperty.Name).SingleOrDefault();
+                if (apiInputProperty != null)
+                {
+                    calcProperty.SetValue(calcInputModel, apiInputProperty.GetValue(apiInputModel));
+                }
+            }
+            this.InputModel = apiInputModel;
 
-        //}
+        }
 
 
         //public EngineResultModel(qfrac::QFractureEngine.QFractureResults calcResult, QFractureInputModel calcInputModel)

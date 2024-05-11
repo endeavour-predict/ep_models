@@ -14,11 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_core" Version="1.0.0" />
-    <PackageReference Include="QRisk3" Version="3.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.2" />
-    <PackageReference Include="X05" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ep_core\ep_core\ep_core.csproj" />
+    <ProjectReference Include="..\qdiabetes\QDiabetes-EH\QDiabetes-EH.csproj" />
+    <ProjectReference Include="..\qrisk3\Engine\QRISK3-EH.csproj" />
   </ItemGroup>
 
 </Project>
