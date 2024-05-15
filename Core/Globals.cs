@@ -37,17 +37,17 @@ public class Globals
                 EngineUri = "http://endhealth.info/im#Qrisk3"
             });
 
-        //this.AvailableEngines.Add(new Engine
-        //{
-        //    EngineName = EPStandardDefinitions.Engines.QDiabetes.ToString(),
-        //    EngineVersion = qdiab::QDiabetesEngine.QDiabetesAlgorithmCalculator.version(), 
-        //    EngineUri = "http://endhealth.info/im#QDiabetes"
-        //});
+        this.AvailableEngines.Add(new Engine
+        {
+            EngineName = EPStandardDefinitions.Engines.QDiabetes.ToString(),
+            EngineVersion = QDiabetesEngine.QDiabetesAlgorithmCalculator.version(),
+            EngineUri = "http://endhealth.info/im#QDiabetes"
+        });
 
         //this.AvailableEngines.Add(new Engine
         //{
         //    EngineName = EPStandardDefinitions.Engines.QFracture.ToString(),
-        //    EngineVersion = qfrac::QFractureEngine.QFractureAlgorithmCalculator.version(),
+        //    EngineVersion = QFractureEngine.QFractureAlgorithmCalculator.version(),
         //    EngineUri = "http://endhealth.info/im#QFracture"
         //});
 
