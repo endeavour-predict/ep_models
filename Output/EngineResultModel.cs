@@ -1,15 +1,10 @@
-﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
-// see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
-extern alias qrisk3;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Core;
 using System.Reflection;
-
-using static Core.EPStandardDefinitions;
 using static Globals;
-using System.Text.Json.Serialization;
 using System.Linq;
+using static ep_core.EPStandardDefinitions;
+using ep_core;
 
 namespace ep_models
 {
@@ -24,7 +19,7 @@ namespace ep_models
         /// <summary>
         /// Name of the Engine that supplied this result
         /// </summary>
-        public EPStandardDefinitions.Engines EngineName { get; set; }
+        public Engines EngineName { get; set; }
 
         /// <summary>
         /// Version of the Engine that supplied this result
@@ -145,16 +140,16 @@ namespace ep_models
         /// <summary>
         /// Constructor for the QRisk3 engine
         /// </summary>        
-        public EngineResultModel(qrisk3::QRISK3Engine.QRiskCVDResults calcResult, QRisk3InputModel calcInputModel)
+        public EngineResultModel(QRISK3Engine.QRiskCVDResults calcResult, QRisk3InputModel calcInputModel)
         {            
             var globals = new Globals();
             this.EngineName = Engines.QRisk3;
-            Engine engine = GetEngine(globals, EPStandardDefinitions.Engines.QRisk3.ToString());            
+            Engine engine = GetEngine(globals, Engines.QRisk3.ToString());            
             this.EngineVersion = engine.EngineVersion;
 
             var meta = new EngineMeta();
-            meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-            meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
             this.CalculationMeta = meta;
 
             // map the calculator specific results output to the generic API engine results model
@@ -237,67 +232,71 @@ namespace ep_models
         }
 
 
-        //public EngineResultModel(qdiab::QDiabetesEngine.QDiabetesResults calcResult, QDiabetesInputModel calcInputModel)
-        //{
-        //    var globals = new Globals();
-        //    var engineName = EPStandardDefinitions.Engines.QDiabetes.ToString();
-        //    Engine engine = GetEngine(globals, engineName);            
-        //    this.EngineName = engine.EngineName;
-        //    this.EngineVersion = engine.EngineVersion;
-
-        //    var meta = new Meta();
-        //    meta.EngineResultStatus = (EPStandardDefinitions.ResultStatus)calcResult.resultStatus;
-        //    meta.EngineResultStatusReason = (EPStandardDefinitions.ReasonInvalid)calcResult.reason;
-        //    this.CalculationMeta = meta;
-
-        //    var result1 = new PredictionResult();
-        //    result1.id = new Uri(engine.EngineUri);
-        //    result1.score = calcResult.patient_score;
-        //    result1.typicalScore = calcResult.reference_score;
-        //    result1.predictionYears = 10;
-        //    this.Results.Add(result1);
-
-        //    var smokingQuality = new DataQuality();
-        //    smokingQuality.Parameter = "smokingStatus";
-        //    smokingQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.smokingStatus.data.ToString());
-        //    smokingQuality.SubstituteValue = calcResult.dataQuality.smokingStatus.substitute_value;
-        //    Quality.Add(smokingQuality);
-
-        //    var ethnicityQuality = new DataQuality();
-        //    ethnicityQuality.Parameter = "ethnicity";
-        //    ethnicityQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.ethnicity.data.ToString());
-        //    ethnicityQuality.SubstituteValue = calcResult.dataQuality.ethnicity.substitute_value.ToString();
-        //    Quality.Add(ethnicityQuality);
+        public EngineResultModel(QDiabetesEngine.QDiabetesResults calcResult, QDiabetesInputModel calcInputModel)
+        {
+            var globals = new Globals();
+            this.EngineName = Engines.QDiabetes;
+            Engine engine = GetEngine(globals, Engines.QDiabetes.ToString());
+            this.EngineVersion = engine.EngineVersion;
 
 
-        //    var bmiQuality = new DataQuality();
-        //    bmiQuality.Parameter = "BMI";
-        //    bmiQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.bmi.data.ToString());
-        //    bmiQuality.SubstituteValue = calcResult.dataQuality.bmi.substitute_value.ToString();
-        //    Quality.Add(bmiQuality);
 
-        //    var townsendQuality = new DataQuality();
-        //    townsendQuality.Parameter = "townsendScore";
-        //    townsendQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.town.data.ToString());
-        //    townsendQuality.SubstituteValue = calcResult.dataQuality.town.substitute_value.ToString();
-        //    Quality.Add(townsendQuality);
+            var meta = new EngineMeta();
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
+            this.CalculationMeta = meta;
 
-        //    // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
-        //    PropertyInfo[] calcInputProperties = typeof(QDiabetesInputModel).GetProperties();
-        //    PropertyInfo[] apiInputProperties = typeof(InputModel).GetProperties();
-        //    InputModel apiInputModel = new InputModel();
-        //    foreach (PropertyInfo calcProperty in calcInputProperties)
-        //    {
-        //        // map the calc param to the genmeric input param, showing the ones used
-        //        var apiInputProperty = apiInputProperties.Where(p => p.PropertyType.Name == calcProperty.Name).SingleOrDefault();
-        //        if (apiInputProperty != null)
-        //        {
-        //            calcProperty.SetValue(calcInputModel, apiInputProperty.GetValue(apiInputModel));
-        //        }
-        //    }
-        //    this.InputModel = apiInputModel;
 
-        //}
+            var result1 = new PredictionResult();
+            result1.id = new Uri(engine.EngineUri);
+            result1.score = calcResult.patient_score;
+            result1.typicalScore = calcResult.reference_score;
+            result1.predictionYears = 10;
+            this.Results.Add(result1);
+
+            var smokingQuality = new DataQuality();
+            smokingQuality.Parameter = "smokingStatus";
+            smokingQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.smokingStatus.data.ToString());
+            smokingQuality.SubstituteValue = calcResult.dataQuality.smokingStatus.substitute_value;
+            Quality.Add(smokingQuality);
+
+            var ethnicityQuality = new DataQuality();
+            ethnicityQuality.Parameter = "ethnicity";
+            ethnicityQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.ethnicity.data.ToString());
+            ethnicityQuality.SubstituteValue = calcResult.dataQuality.ethnicity.substitute_value.ToString();
+            Quality.Add(ethnicityQuality);
+
+
+            var bmiQuality = new DataQuality();
+            bmiQuality.Parameter = "BMI";
+            bmiQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.bmi.data.ToString());
+            bmiQuality.SubstituteValue = calcResult.dataQuality.bmi.substitute_value.ToString();
+            Quality.Add(bmiQuality);
+
+            var townsendQuality = new DataQuality();
+            townsendQuality.Parameter = "townsendScore";
+            townsendQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.town.data.ToString());
+            townsendQuality.SubstituteValue = calcResult.dataQuality.town.substitute_value.ToString();
+            Quality.Add(townsendQuality);
+
+            // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
+
+            // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
+            PropertyInfo[] calcInputProperties = typeof(QDiabetesInputModel).GetProperties();
+            PropertyInfo[] apiInputProperties = typeof(EPInputModel).GetProperties();
+            EPInputModel epInputModel = new EPInputModel();
+            foreach (PropertyInfo calcProperty in calcInputProperties)
+            {
+                // map the calc param to the genmeric input param, showing the ones used
+                var apiInputProperty = apiInputProperties.Where(p => p.Name == calcProperty.Name).SingleOrDefault();
+                if (apiInputProperty != null)
+                {
+                    apiInputProperty.SetValue(epInputModel, calcProperty.GetValue(calcInputModel));
+                }
+            }
+            epInputModel.requestedEngines.Add(Engines.QDiabetes);
+            this.EngineInputModel = epInputModel;
+        }
 
 
         //public EngineResultModel(qfrac::QFractureEngine.QFractureResults calcResult, QFractureInputModel calcInputModel)
@@ -365,6 +364,90 @@ namespace ep_models
 
         //}
 
+
+
+        /// <summary>
+        /// Constructor for the X05 engine
+        /// </summary>        
+        public EngineResultModel(X05_oesophagealcancerEngine.X05_oesophagealcancerResults calcResult, X05InputModel calcInputModel)
+        {
+            var globals = new Globals();
+            this.EngineName = Engines.X05;
+            Engine engine = GetEngine(globals, Engines.X05.ToString());
+            this.EngineVersion = engine.EngineVersion;
+
+            var meta = new EngineMeta();
+            meta.EngineResultStatus = (ResultStatus)calcResult.resultStatus;
+            meta.EngineResultStatusReason = (ReasonInvalid)calcResult.reason;
+            this.CalculationMeta = meta;
+
+            // map the calculator specific results output to the generic API engine results model
+            // X05 returns 3 scores (each with their own Typical "reference" Score)
+            var result1 = new PredictionResult();
+            result1.id = new Uri(engine.EngineUri + "#" + "oesophagealcancer_5_score");
+            result1.score = calcResult.oesophagealcancer_5_score;
+            result1.typicalScore = calcResult.reference_oesophagealcancer_5_score;
+            result1.predictionYears = calcInputModel.predictionYears;
+            this.Results.Add(result1);
+
+            var result2 = new PredictionResult();
+            result2.id = new Uri(engine.EngineUri + "#" + "oesophagealcancer_6_score");
+            result2.score = calcResult.reference_oesophagealcancer_6_score;
+            result2.typicalScore = calcResult.reference_oesophagealcancer_6_score;
+            result2.predictionYears = calcInputModel.predictionYears;
+            this.Results.Add(result2);
+
+
+            var result3 = new PredictionResult();
+            result3.id = new Uri(engine.EngineUri + "#" + "oesophagealcancer_7_score");
+            result3.score = calcResult.oesophagealcancer_7_score;
+            result3.typicalScore = calcResult.reference_oesophagealcancer_7_score;
+            result3.predictionYears = calcInputModel.predictionYears;
+            this.Results.Add(result3);
+
+
+            var smokingQuality = new DataQuality();
+            smokingQuality.Parameter = "smokingStatus";
+            smokingQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.smoke_cat.data.ToString());
+            smokingQuality.SubstituteValue = calcResult.dataQuality.smoke_cat.substitute_value;
+            Quality.Add(smokingQuality);
+
+            var ethnicityQuality = new DataQuality();
+            ethnicityQuality.Parameter = "ethnicity";
+            ethnicityQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.ethnicity.data.ToString());
+            ethnicityQuality.SubstituteValue = calcResult.dataQuality.ethnicity.substitute_value.ToString();
+            Quality.Add(ethnicityQuality);
+
+            var bmiQuality = new DataQuality();
+            bmiQuality.Parameter = "BMI";
+            bmiQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.bmi.data.ToString());
+            bmiQuality.SubstituteValue = calcResult.dataQuality.bmi.substitute_value.ToString();
+            Quality.Add(bmiQuality);
+
+            var townsendQuality = new DataQuality();
+            townsendQuality.Parameter = "townsendScore";
+            townsendQuality.Quality = (ParameterQuality)Enum.Parse(typeof(ParameterQuality), calcResult.dataQuality.town.data.ToString());
+            townsendQuality.SubstituteValue = calcResult.dataQuality.town.substitute_value.ToString();
+            Quality.Add(townsendQuality);
+
+
+
+            // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
+            PropertyInfo[] calcInputProperties = typeof(X05InputModel).GetProperties();
+            PropertyInfo[] apiInputProperties = typeof(EPInputModel).GetProperties();
+            EPInputModel epInputModel = new EPInputModel();
+            foreach (PropertyInfo calcProperty in calcInputProperties)
+            {
+                // map the calc param to the generic input param, showing the ones used
+                var apiInputProperty = apiInputProperties.Where(p => p.Name == calcProperty.Name).SingleOrDefault();
+                if (apiInputProperty != null)
+                {
+                    apiInputProperty.SetValue(epInputModel, calcProperty.GetValue(calcInputModel));
+                }
+            }
+            epInputModel.requestedEngines.Add(Engines.X05);
+            this.EngineInputModel = epInputModel;
+        }
 
 
 

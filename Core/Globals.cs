@@ -1,11 +1,5 @@
-// we have to alias the engine DLLs because they all contain things in the same namespace,
-// see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
-extern alias qrisk3;
-//extern alias qdiab;
-//extern alias qfrac;
-//extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 
-using Core;
+using ep_core;
 using System.Collections.Generic;
 
 /// <summary>
@@ -39,23 +33,30 @@ public class Globals
     {
         this.AvailableEngines.Add(new Engine
             {   EngineName = EPStandardDefinitions.Engines.QRisk3.ToString(),
-                EngineVersion = qrisk3::QRISK3Engine.QRiskCVDAlgorithmCalculator.version(),
+                EngineVersion = QRISK3Engine.QRiskCVDAlgorithmCalculator.version(),
                 EngineUri = "http://endhealth.info/im#Qrisk3"
             });
 
-        //this.AvailableEngines.Add(new Engine
-        //{
-        //    EngineName = EPStandardDefinitions.Engines.QDiabetes.ToString(),
-        //    EngineVersion = qdiab::QDiabetesEngine.QDiabetesAlgorithmCalculator.version(), 
-        //    EngineUri = "http://endhealth.info/im#QDiabetes"
-        //});
+        this.AvailableEngines.Add(new Engine
+        {
+            EngineName = EPStandardDefinitions.Engines.QDiabetes.ToString(),
+            EngineVersion = QDiabetesEngine.QDiabetesAlgorithmCalculator.version(),
+            EngineUri = "http://endhealth.info/im#QDiabetes"
+        });
 
         //this.AvailableEngines.Add(new Engine
         //{
         //    EngineName = EPStandardDefinitions.Engines.QFracture.ToString(),
-        //    EngineVersion = qfrac::QFractureEngine.QFractureAlgorithmCalculator.version(),
+        //    EngineVersion = QFractureEngine.QFractureAlgorithmCalculator.version(),
         //    EngineUri = "http://endhealth.info/im#QFracture"
         //});
+
+        this.AvailableEngines.Add(new Engine
+        {
+            EngineName = EPStandardDefinitions.Engines.X05.ToString(),
+            EngineVersion = X05_oesophagealcancerEngine.X05_oesophagealcancerAlgorithmCalculator.version(),
+            EngineUri = "http://endhealth.info/im#X05"
+        });
     }
 
 
