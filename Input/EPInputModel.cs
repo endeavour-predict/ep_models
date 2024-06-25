@@ -22,9 +22,9 @@ namespace ep_models
 
 
         /// <summary>
-        /// Create an Input model from a row of "Test Pack" data
+        /// Create an Input model from a row of QRisk 3 "Test Pack" data
         /// </summary>
-        /// <param name="row">Row of data from an Oxford Test Pack</param>
+        /// <param name="row">Row of data from an Oxford QRisk3 Test Pack</param>
         public static EPInputModel CreateFromQRisk3TestPackRow(string[] row)
         {       
             var epInputModel = new EPInputModel();
@@ -55,6 +55,48 @@ namespace ep_models
             return epInputModel;
         }
 
+        /// <summary>
+        /// Create an Input model from a row of QDiabetes "Test Pack" data
+        /// </summary>
+        /// <param name="row">Row of data from an Oxford QDiabetes Test Pack</param>
+        public static EPInputModel CreateFromQDiabetesTestPackRow(string[] row)
+        {
+            var epInputModel = new EPInputModel();
+            epInputModel.requestedEngines.Add(Engines.QDiabetes);          
+            epInputModel.diabetesStatus = (DiabetesCat)Enum.Parse(typeof(DiabetesCat), row[1]);
+            if (row[2] == "F") epInputModel.sex = Gender.Female;
+            if (row[2] == "M") epInputModel.sex = Gender.Male;
+            epInputModel.age = Int32.Parse(row[3]);
+            epInputModel.atypicalAntipsychoticMedication = row[4] == "1";
+            epInputModel.systemicCorticosteroids = row[5] == "1";
+            epInputModel.CVD = row[6] == "1";
+            epInputModel.gestationalDiabetes = row[7] == "1";
+            epInputModel.learningDisabilities = row[8] == "1";
+            epInputModel.manicDepressionSchizophrenia = row[9] == "1";
+            epInputModel.polycysticOvaries = row[10] == "1";
+            epInputModel.statins = row[11] == "1";
+            epInputModel.bloodPressureTreatment = row[12] == "1";
+            if (row[13] != "")
+            {
+                epInputModel.BMI = Double.Parse(row[13]);
+            }
+            epInputModel.ethnicity = (Ethnicity)Enum.Parse(typeof(Ethnicity), row[14]);            
+            if (row[15] != "")
+            {
+                epInputModel.fastingBloodGlucose = Double.Parse(row[15]);
+            }            
+            epInputModel.familyHistoryDiabetes = row[16] == "1";
+            if (row[17] != "")
+            {
+                epInputModel.hba1c = Double.Parse(row[17]); 
+            }
+            epInputModel.smokingStatus = (SmokeCat)Enum.Parse(typeof(SmokeCat), row[18]);                        
+            if (row[19] != "") 
+            {
+                epInputModel.townsendScore = Double.Parse(row[19]);
+            }                
+            return epInputModel;
+        }
 
 
         /// <summary>

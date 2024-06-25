@@ -2,6 +2,10 @@
 --------------------------------------------------------------
 ep_models - NUGET package version history
 --------------------------------------------------------------
+1.0.8 (QDiab) 
+25 Jun 2024
+Added QDiab Test Row creation
+--------------------------------------------------------------
 1.0.7 (QDiab) 
 23 May 2024
 Added QDiab and latest nugets
